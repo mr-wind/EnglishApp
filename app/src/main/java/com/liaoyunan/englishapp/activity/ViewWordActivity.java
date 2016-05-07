@@ -38,11 +38,17 @@ public class ViewWordActivity extends AppCompatActivity {
     private TextView yinbiaoView;
     private Button showHideBtn;
     private String readWord = "test";
+    private Word.RECORDSBean defaultWord = new Word.RECORDSBean();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_book);
+
+        defaultWord.setWord("word");
+        defaultWord.setYinbiao("「音标」");
+        defaultWord.setMeaning("「单词释义」");
+
         wordView = (TextView) findViewById(R.id.word);
         meaningView = (TextView) findViewById(R.id.meaning);
         yinbiaoView = (TextView) findViewById(R.id.yinbiao);
@@ -90,11 +96,9 @@ public class ViewWordActivity extends AppCompatActivity {
         wordList = wordDB.loadWordLib();//从单词库表获取单词
 
         if (wordDB.loadIndex() < 0) {
-            wordDB.saveIndex(mIndex);
+            wordDB.saveIndex( -1 );
         } else {
             mIndex = wordDB.loadIndex();//获取Index
-
-            //Log.w("TAG", "+++++++++++" + String.valueOf(wordDB.loadMaxIndex()));
         }
 
         dataList.clear();
@@ -102,7 +106,12 @@ public class ViewWordActivity extends AppCompatActivity {
             dataList.add(recordsBean.getWord());
         }
         mAdapter.notifyDataSetChanged();
-        setWord(wordList.get(mIndex));
+        if (wordList.isEmpty()){
+            setWord(defaultWord);
+        }else {
+            setWord(wordList.get(mIndex));
+        }
+
     }
 
     /**
@@ -129,6 +138,7 @@ public class ViewWordActivity extends AppCompatActivity {
         if (mIndex < wordList.size() - 1) {
             mIndex++;
             setWord(wordList.get(mIndex));
+            wordListView.setVisibility(View.GONE);
         }
 
     }
@@ -140,6 +150,7 @@ public class ViewWordActivity extends AppCompatActivity {
         if (mIndex > 0) {
             mIndex--;
             setWord(wordList.get(mIndex));
+            wordListView.setVisibility(View.GONE);
         }
     }
 
@@ -147,7 +158,9 @@ public class ViewWordActivity extends AppCompatActivity {
      * 添加到单词本
      */
     public void addToCollect(View view) {
-        wordDB.addToCollect(wordList.get(mIndex));
+        if (!wordList.isEmpty()){
+            wordDB.addToCollect(wordList.get(mIndex));
+        }
     }
 
     /**
@@ -160,6 +173,10 @@ public class ViewWordActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        wordDB.saveIndex(mIndex);
+        if (wordList.size() == 0){
+            wordDB.saveIndex(-1);
+        }else {
+            wordDB.saveIndex(mIndex);
+        }
     }
 }

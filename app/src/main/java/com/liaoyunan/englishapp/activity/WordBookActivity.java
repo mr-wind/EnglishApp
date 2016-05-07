@@ -39,6 +39,7 @@ public class WordBookActivity extends AppCompatActivity implements RemoveListene
     private WebView mWebView;
     private ImageButton add;
     private String readWord = "test";
+    private Word.RECORDSBean defaultWord = new Word.RECORDSBean();
     /**
      * 单词索引
      */
@@ -49,6 +50,9 @@ public class WordBookActivity extends AppCompatActivity implements RemoveListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_book);
 
+        defaultWord.setWord("word");
+        defaultWord.setYinbiao("「音标」");
+        defaultWord.setMeaning("「单词释义」");
         wordView = (TextView) findViewById(R.id.word);
         meaningView = (TextView) findViewById(R.id.meaning);
         yinbiaoView = (TextView) findViewById(R.id.yinbiao);
@@ -95,16 +99,16 @@ public class WordBookActivity extends AppCompatActivity implements RemoveListene
     public void init() {
         wordDB = WordDB.getInstance(this);
         wordList = wordDB.loadWordCelect();//从单词本表获取单词
-        if (wordList.size() <= 0) {
+        if (wordList.isEmpty()) {
             Toast.makeText(this, "未添加任何单词", Toast.LENGTH_SHORT).show();
-            finish();
+        } else {
+            dataList.clear();
+            for (Word.RECORDSBean recordsBean : wordList) {
+                dataList.add(recordsBean.getWord());
+            }
+            mAdapter.notifyDataSetChanged();
+            setWord(wordList.get(mIndex));
         }
-        dataList.clear();
-        for (Word.RECORDSBean recordsBean : wordList) {
-            dataList.add(recordsBean.getWord());
-        }
-        mAdapter.notifyDataSetChanged();
-        setWord(wordList.get(mIndex));
     }
 
 
@@ -132,6 +136,7 @@ public class WordBookActivity extends AppCompatActivity implements RemoveListene
         if (mIndex < wordList.size() - 1) {
             mIndex++;
             setWord(wordList.get(mIndex));
+            wordListView.setVisibility(View.GONE);
         }
 
     }
@@ -143,6 +148,7 @@ public class WordBookActivity extends AppCompatActivity implements RemoveListene
         if (mIndex > 0) {
             mIndex--;
             setWord(wordList.get(mIndex));
+            wordListView.setVisibility(View.GONE);
         }
     }
 
@@ -170,10 +176,11 @@ public class WordBookActivity extends AppCompatActivity implements RemoveListene
         }
         mAdapter.remove(mAdapter.getItem(position));
         wordList.remove(wordList.get(position));
-        if (wordList.size() <= 0) {
-            Toast.makeText(this, "已删除所有单词", Toast.LENGTH_SHORT).show();
-            finish();
+        if (wordList.size() != 0) {
+            setWord(wordList.get(mIndex));
+        } else {
+            setWord(defaultWord);
         }
-        setWord(wordList.get(mIndex));
+
     }
 }

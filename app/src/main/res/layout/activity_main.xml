@@ -29,6 +29,7 @@
             android:textColor="#ffffff"/>
 
         <TextView
+            android:text="总共学习了：0个单词"
             android:id="@+id/learn_max"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

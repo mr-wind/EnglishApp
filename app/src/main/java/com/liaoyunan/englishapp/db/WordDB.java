@@ -169,6 +169,10 @@ public class WordDB {
                 db.endTransaction();
                 Log.w("TAG", "SveIndecComplete");
             }
+        }else {
+            ContentValues values = new ContentValues();
+            values.put("myIndex", -1);
+            db.insert("ViewIndex", null, values);
         }
     }
 

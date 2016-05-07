@@ -87,9 +87,13 @@ public class WordTestActivity extends AppCompatActivity implements View.OnClickL
      * 获取十道题目
      */
     public void getTest() {
-        WordTest wordTest = new WordTest(this, mIndex, mRECORDSBeanList);
-        mTests = wordTest.getWordFromLib();
-        displayTest(mTests.get(testIndex));
+        if (mIndex != -1){
+            WordTest wordTest = new WordTest(this, mIndex, mRECORDSBeanList);
+            mTests = wordTest.getWordFromLib();
+        }
+        if (!mTests.isEmpty()){
+            displayTest(mTests.get(testIndex));
+        }
     }
 
     /**

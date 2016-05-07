@@ -10,7 +10,7 @@
         android:background="#5677fc"
         android:paddingLeft="16dp"
         android:paddingTop="48dp"
-        android:text="Word"
+        android:text="word"
         android:textColor="#ffffff"
         android:textSize="45sp"
         android:textStyle="bold"/>
@@ -24,7 +24,7 @@
         android:paddingBottom="40dp"
         android:paddingLeft="32dp"
         android:paddingTop="24dp"
-        android:text="「yinbiao」"
+        android:text="「音标」"
         android:textColor="#ffffff"
         android:textSize="24sp"/>
 
@@ -36,18 +36,19 @@
         android:paddingBottom="16dp"
         android:paddingLeft="32dp"
         android:paddingTop="32dp"
-        android:text="单词释义"
+        android:text="「单词释义」"
         android:textSize="24sp"/>
 
     <LinearLayout
-        android:gravity="end"
-        android:layout_below="@id/word"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/word"
+        android:gravity="end">
+
         <ImageButton
-            android:layout_marginTop="32dp"
             android:layout_width="64dp"
             android:layout_height="64dp"
+            android:layout_marginTop="32dp"
             android:background="#0000"
             android:onClick="play"
             android:scaleType="fitCenter"
@@ -103,7 +104,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:background="@color/colorPrimary"
             android:gravity="center"
             android:orientation="horizontal">
@@ -113,8 +114,10 @@
                 android:layout_height="wrap_content"
                 android:background="#0000"
                 android:onClick="previousWord"
+                android:paddingBottom="8dp"
                 android:paddingLeft="24dp"
                 android:paddingRight="24dp"
+                android:paddingTop="8dp"
                 android:src="@drawable/left_btn"/>
 
             <ImageButton
@@ -123,8 +126,11 @@
                 android:layout_height="wrap_content"
                 android:background="#0000"
                 android:onClick="addToCollect"
+                android:paddingBottom="8dp"
                 android:paddingLeft="24dp"
                 android:paddingRight="24dp"
+                android:paddingTop="8dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/add_button"/>
 
             <ImageButton
@@ -132,8 +138,10 @@
                 android:layout_height="wrap_content"
                 android:background="#0000"
                 android:onClick="nextWord"
+                android:paddingBottom="8dp"
                 android:paddingLeft="24dp"
                 android:paddingRight="24dp"
+                android:paddingTop="8dp"
                 android:src="@drawable/right_btn"/>
         </LinearLayout>
     </LinearLayout>

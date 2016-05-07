@@ -117,7 +117,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //wordDB.createTestData();//添加了测试数据
             getWordLib();
         }
-        learnMax.setText("总共学习了：" + wordDB.loadMaxIndex() + "个单词");
+        if (wordDB.loadMaxIndex() >= 0){
+            learnMax.setText("总共学习了：" + wordDB.loadMaxIndex() + "个单词");
+        }
     }
 
     /**
@@ -193,7 +195,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onRestart() {
         super.onRestart();
-        learnMax.setText("总共学习了：" + wordDB.loadMaxIndex() + "个单词");
+        if (wordDB.loadMaxIndex() >= 0){
+            learnMax.setText("总共学习了：" + wordDB.loadMaxIndex() + "个单词");
+        }
     }
 
 }
