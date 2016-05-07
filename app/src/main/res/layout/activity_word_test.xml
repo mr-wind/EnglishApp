@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/test_word"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#5677fc"
+        android:paddingBottom="24dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="48dp"
+        android:text="Word"
+        android:textColor="#ffffff"
+        android:textSize="45sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/choose_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/test_word"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="32dp"
+        android:clickable="true"
+        android:text="A"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/choose_b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/choose_a"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:text="A"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/choose_c"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/choose_b"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:text="A"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/choose_d"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/choose_c"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:text="A"
+        android:textSize="20sp"/>
+
+    <LinearLayout
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/score_view"
+            android:textSize="40sp"
+            android:textColor="#ffffff"
+            android:text="Score:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</RelativeLayout>
