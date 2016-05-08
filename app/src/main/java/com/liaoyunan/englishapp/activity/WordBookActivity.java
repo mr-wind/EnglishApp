@@ -2,7 +2,9 @@ package com.liaoyunan.englishapp.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
@@ -38,7 +40,7 @@ public class WordBookActivity extends AppCompatActivity implements RemoveListene
     private Button showHideBtn;
     private WebView mWebView;
     private ImageButton add;
-    private String readWord = "test";
+    private String readWord = "word";
     private Word.RECORDSBean defaultWord = new Word.RECORDSBean();
     /**
      * 单词索引
@@ -84,12 +86,21 @@ public class WordBookActivity extends AppCompatActivity implements RemoveListene
 
         mWebView = (WebView) findViewById(R.id.web_view);
         mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.setWebViewClient(new WebViewClient() {
+        /*mWebView.setWebViewClient(new WebViewClient() {
             public void onPageFinished(WebView view, String url) {
                 mWebView.loadUrl("javascript:(function() { var videos = document.getElementsByTagName('video'); for(var i=0;i<videos.length;i++){videos[i].play();}})()");
             }
+        });*/
+        mWebView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                Log.w("TAG", "" + newProgress);
+                if (newProgress == 100) {
+                    mWebView.loadUrl("javascript:(function() { var videos = document.getElementsByTagName('video'); for(var i=0;i<videos.length;i++){videos[i].play();}})()");
+                }
+            }
         });
-
         init();
     }
 
@@ -136,7 +147,6 @@ public class WordBookActivity extends AppCompatActivity implements RemoveListene
         if (mIndex < wordList.size() - 1) {
             mIndex++;
             setWord(wordList.get(mIndex));
-            wordListView.setVisibility(View.GONE);
         }
 
     }
@@ -148,7 +158,6 @@ public class WordBookActivity extends AppCompatActivity implements RemoveListene
         if (mIndex > 0) {
             mIndex--;
             setWord(wordList.get(mIndex));
-            wordListView.setVisibility(View.GONE);
         }
     }
 
@@ -177,7 +186,12 @@ public class WordBookActivity extends AppCompatActivity implements RemoveListene
         mAdapter.remove(mAdapter.getItem(position));
         wordList.remove(wordList.get(position));
         if (wordList.size() != 0) {
-            setWord(wordList.get(mIndex));
+            if ((wordList.size()) == mIndex) {
+                mIndex = mIndex -1;
+                setWord(wordList.get(mIndex));
+            } else {
+                setWord(wordList.get(mIndex));
+            }
         } else {
             setWord(defaultWord);
         }

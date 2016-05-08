@@ -20,14 +20,22 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ViewWordActivity">
+        <activity
+            android:label="学习单词"
+            android:name=".activity.LearnWordActivity">
 
         </activity>
-        <activity android:name=".activity.WordBookActivity">
+        <activity
+            android:label="单词收藏"
+            android:name=".activity.WordBookActivity">
 
         </activity>
-        <activity android:name=".activity.WordTestActivity"/>
-        <activity android:name=".activity.CalScoreActivity"/>
+        <activity
+            android:label="单词测试"
+            android:name=".activity.WordTestActivity"/>
+        <activity
+            android:label="分数结算"
+            android:name=".activity.CalScoreActivity"/>
     </application>
 
 </manifest>

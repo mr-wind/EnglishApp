@@ -190,6 +190,9 @@ public class WordTestActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
+        if(mTests.size() == 0){
+            return;
+        }
         switch (v.getId()) {
             case R.id.choose_a:
                 testAnswer(R.id.choose_a);

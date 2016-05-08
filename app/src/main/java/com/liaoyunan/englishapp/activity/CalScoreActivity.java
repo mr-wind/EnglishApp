@@ -19,7 +19,7 @@ public class CalScoreActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_word);
+        setContentView(R.layout.activity_cal_score);
         Intent intent = getIntent();
         score = intent.getIntExtra("score", 0);
         showScore = (TextView) findViewById(R.id.show_score);

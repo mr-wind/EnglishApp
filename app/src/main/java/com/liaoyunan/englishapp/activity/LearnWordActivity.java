@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by Quhaofeng on 16-5-1.
  */
-public class ViewWordActivity extends AppCompatActivity {
+public class LearnWordActivity extends AppCompatActivity {
     private ListView wordListView;
     private List<Word.RECORDSBean> wordList = new ArrayList<Word.RECORDSBean>();
     /**
