@@ -38,7 +38,7 @@ public class LearnWordActivity extends AppCompatActivity {
     private TextView meaningView;
     private TextView yinbiaoView;
     private Button showHideBtn;
-    private String readWord = "test";
+    private String readWord = "word";
     private Word.RECORDSBean defaultWord = new Word.RECORDSBean();
 
     @Override

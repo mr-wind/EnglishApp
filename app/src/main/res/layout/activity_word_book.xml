@@ -46,6 +46,7 @@
         android:gravity="end">
 
         <ImageButton
+            android:layout_marginRight="16dp"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginTop="32dp"
