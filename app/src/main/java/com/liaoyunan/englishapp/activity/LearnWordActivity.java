@@ -181,13 +181,18 @@ public class LearnWordActivity extends AppCompatActivity {
         mWebView.loadUrl("http://dict.youdao.com/dictvoice?type=2&audio=" + readWord);
     }
 
+
+    /**
+     * back时回调，存储浏览索引到数据库
+     * */
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onBackPressed() {
+        super.onBackPressed();
         if (wordList.size() == 0){
             wordDB.saveIndex(-1);
         }else {
             wordDB.saveIndex(mIndex);
         }
     }
+
 }

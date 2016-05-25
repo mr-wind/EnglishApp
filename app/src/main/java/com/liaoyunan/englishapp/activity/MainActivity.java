@@ -192,12 +192,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getWordLib();
     }
 
+    /**
+     * 开始的时候更新学习进度索引
+     * */
     @Override
-    protected void onRestart() {
-        super.onRestart();
+    protected void onStart(){
+        super.onStart();
         if (wordDB.loadMaxIndex() >= 0){
-            learnMax.setText("总共学习了：" + wordDB.loadMaxIndex() + "个单词");
+            int index = wordDB.loadMaxIndex();
+            learnMax.setText("总共学习了：" + index + "个单词");
         }
     }
-
 }
